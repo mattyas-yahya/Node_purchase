@@ -1,0 +1,38 @@
+<!-- Page Heading -->
+                    <div class="modal fade" id="modal_line" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Add New Purchase </h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                                <div id="info"></div>
+                                <form data-toggle="validator" role="form" name="form_purchase" id="form_purchase" method="post" >
+                                    <div class="form-group">
+                                      <label for="exampleInputEmail1">Purchase Requests Code</label>
+                                      <input  class="form-control" name="prcode"  id="prcode" aria-describedby="emailHelp" placeholder="PR001">
+                                      <small id="emailHelp" class="form-text text-muted">Purchase Request usahakan unique.</small>
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="exampleInputPassword1">Requester</label>
+                                      <input type="text" class="form-control" id="requester"  name="requester" placeholder="budi kingkong">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Detail Requester</label>
+                                        <input type="text" class="form-control" id="detail_request"  name="detail_request" placeholder="dari mana duitnya !!!!">
+                                      </div>
+                                  </form>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              <button type="submit" id="pol1" name="pol1" class="btn btn-primary">Save changes</button>
+                              <button type="submit" id="pol2" name="pol2" class="btn btn-danger">Delete</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+

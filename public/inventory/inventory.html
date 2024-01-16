@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Inventory </title>
+
+  <!-- Custom fonts for this template -->
+  <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+      rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this page -->
+  <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+  <!-- Bootstrap core JavaScript -->
+  <script  src="/vendor/jquery/jquery.js"></script>
+  <script  src="/vendor/jquery/jquery.min.js"></script>
+  <script  src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript -->
+  <script  src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+
+  <!-- Custom scripts for all pages -->
+  <script  src="/vendor/sb-admin-2.min.js"></script>
+
+
+
+
+</head>
+
+<body id="page-top">
+
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+       <!-- Sidebar -->
+       <div  id="sidebarContainer">
+        <!-- Sisipkan isi dari sidebar.html di sini menggunakan JavaScript -->
+    </div>
+
+
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+      
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                  <h1 class="h3 mb-4 text-gray-800">Inventory</h1>
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+               <!-- Button trigger modal -->
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="invdelmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Delete Invetory </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" hidden>
+            <form data-toggle="validator" role="form" name="form_inventory1" id="form_inventory1" method="post" >
+              <div class="form-group" hidden>
+                <label for="exampleInputEmail1">id</label>
+                <input  class="form-control" name="id"  id="id" aria-describedby="" placeholder="" readonly>
+              </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Item number</label>
+                  <input  class="form-control" name="item_number"  id="item_number" aria-describedby="item_number" readonly>
+                  <small id="" class="form-text text-muted">item number usahakan unique.</small>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Product Reference</label>
+                  <input type="text" class="form-control" id="product_reference"  name="product_reference"readonly>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Product Name </label>
+                    <input type="text" class="form-control" id="product_name"  name="product_name" readonly>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">UOM</label>
+                    <input type="text" class="form-control" id="uom"  name="uom" readonly>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Price  </label>
+                    <input type="text" class="form-control" id="price"  name="price" readonly>
+                  </div>
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" id="inv2" name="inv2" class="btn btn-danger">Deletes </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="invmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add New Purchase </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div id="info"></div>
+            <form data-toggle="validator" role="form" name="form_inventory" id="form_inventory" method="post" >
+              <div class="form-group" hidden>
+                <label for="exampleInputEmail1">id</label>
+                <input  class="form-control" name="id"  id="id" aria-describedby="" placeholder="" readonly>
+              </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Item number</label>
+                  <input  class="form-control" name="item_number"  id="item_number" aria-describedby="item_number" placeholder="831717281">
+                  <small id="" class="form-text text-muted">item number usahakan unique.</small>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Product Reference</label>
+                  <input type="text" class="form-control" id="product_reference"  name="product_reference" placeholder="SRY12">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Product Name </label>
+                    <input type="text" class="form-control" id="product_name"  name="product_name" placeholder="SURYA">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">UOM</label>
+                    <input type="text" class="form-control" id="uom"  name="uom" placeholder="pcs">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Price  </label>
+                    <input type="text" class="form-control" id="price"  name="price" placeholder="30000">
+                  </div>
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" id="inv1" name="inv1" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+                 
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                  <div id="alert-container"></div>
+                  <div class="col-lg-12" id="pr">
+                    <table id="tabel_inventory" class="table table-striped table-bordered table-hover"  cellspacing="0"
+                    width="100%" role="grid" aria-describedby="example_info"
+                    style="width: 100%;">
+                    <!-- Header Table -->
+                    <thead>
+                    <tr>
+                      <th>ID</th>
+                    <th>Item Number</th>
+                    <th>Product Ref</th>
+                    <th>Product Name </th>
+                    <th>UOM </th>
+                    <th>Price  </th>
+                    </tr>
+                    </thead>
+                    
+                    <!-- Footer Table -->
+                    </table>
+                    <button type="button" class="btn btn-primary" id="btnadd" data-toggle="modal" data-target="#invmodal">
+                      Add new Inventory
+                    </button>
+                    <button type="button" class="btn btn-danger" id="btndel" data-toggle="modal" data-target="#invdelmodal">
+                      Delete  Inventory
+                    </button>
+                    <button type="button" class="btn btn-info" id="btncncl" >
+                     Cancel
+                    </button>
+</div>
+                        
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+              <!-- Footer -->
+              <footer class="sticky-footer bg-white">
+               
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+      
+    <script>
+      // Ambil elemen sidebarContainer
+      const sidebarContainer = document.getElementById('sidebarContainer');
+    // Buat objek XMLHttpRequest
+    const xhr = new XMLHttpRequest();
+    // Buka koneksi ke file sidebar.html
+    xhr.open('GET', '../sidebar/sidebar.html', true);
+    // Tambahkan event listener untuk menangani perubahan status
+    xhr.onreadystatechange = function () {
+        // Periksa apakah permintaan selesai (status 4) dan berhasil (status 200)
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            // Isi elemen sidebarContainer dengan isi dari sidebar.html
+            sidebarContainer.innerHTML = xhr.responseText;
+        }
+    };
+    // Kirim permintaan
+    xhr.send();
+
+    $(document).ready( function ()
+{
+    $("#prlinee").show();
+});
+</script>
+
+
+
+  <!-- DataTables and related scripts -->
+  <script  src="/vendor/datatables/jquery.dataTables.min.js"></script>
+  <script  src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+  <script  src="/vendor/dataTables.select.min.js"></script>
+  <script  src="/vendor/dataTables.checkboxes.js"></script>
+  <script  src="/vendor/dataTables.checkboxes.min.js"></script>
+  <script  src="/vendor/tables.js"></script>
+  <script  src="/vendor/submit.js"></script>
+
+</body>
+
+
+</html>
