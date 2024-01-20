@@ -25,7 +25,11 @@ const Inventory = sequelize.define('Inventory', {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  price: {
+  purchase_price: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  selling_price: {
     type: DataTypes.STRING,
     allowNull: false,
   },

@@ -10,7 +10,9 @@ const purchaseRoutes = require('./routes/purchase_routes');
 const purchaseLineRoutes = require('./routes/purchase_line_routes');
 const purchase_order_routes = require('./routes/purchase_order_routes');
 const InventoryRoutes = require('./routes/inventory_routes');
+const SalesRoutes = require('./routes/sales_routes');
 const LoginRoutes = require('./routes/login_routes');
+const PrintRoutes = require('./routes/print_routes');
 
 
 // Middleware untuk meng-handle form data
@@ -32,7 +34,9 @@ app.use('/purchase', purchaseRoutes);
 app.use('/purchase_line', purchaseLineRoutes);
 app.use('/Inventory', InventoryRoutes);
 app.use('/purchase_order', purchase_order_routes);
+app.use('/sales', SalesRoutes);
 app.use('/login', LoginRoutes);
+app.use('/print', PrintRoutes);
 
 
 

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Inventory </title>
+
+  <!-- Custom fonts for this template -->
+  <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+      rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this page -->
+  <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+  <!-- Bootstrap core JavaScript -->
+  <script  src="/vendor/jquery/jquery.js"></script>
+  <script  src="/vendor/jquery/jquery.min.js"></script>
+  <script  src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript -->
+  <script  src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+
+  <!-- Custom scripts for all pages -->
+  <script  src="/vendor/sb-admin-2.min.js"></script>
+
+
+  <style>
+    /* Tambahkan gaya CSS sesuai kebutuhan Anda */
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    .calculator {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 5px;
+      max-width: 300px;
+      margin: 20px auto;
+    }
+    .button {
+      font-size: 18px;
+    padding: 15px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #5076dc;
+    color: white;
+    }
+  </style>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+
+  #receiptContainer {
+    max-width: 800px;
+    margin: 0 auto;
+    overflow-y: auto;
+    padding: 10px;
+  width: 495px;
+  margin-top: 197px; /* Menambahkan scrollbar horizontal jika diperlukan */
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+    overflow-x: auto;
+    overflow-y: auto;
+  }
+
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+</style>
+</head>
+
+<body id="page-top">
+
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+       <!-- Sidebar -->
+       <div  id="sidebarContainer">
+        <!-- Sisipkan isi dari sidebar.html di sini menggunakan JavaScript -->
+    </div>
+
+
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+      
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                  <h1 class="h3 mb-4 text-gray-800">Point Of Sale</h1>
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+               <!-- Button trigger modal -->
+
+
+
+                 
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="row">
+                  <div class="col-lg-5" style="margin-left: 100px;" id="pr">
+                    <input type="text" class="form-control" id="search" name="search" placeholder="search here...." style="
+                    width: 674px;
+      height: 93px;
+      font-size: 38px;
+      background: border-box;
+      margin-left: 8px;
+      border-color: #5279d9;
+      color: #8a8b8e;
+        " >
+                    <div class="row" id="itemContainer" style="background-color: white; max-height: 700px;overflow-y: auto;">
+           
+                    
+                </div>
+                
+</div>
+
+<div class="row" style="background-color: white; width: 900px;">
+
+<div class="col-lg-5" >
+  <form data-toggle="validator" role="form" name="form_sales" id="form_sales" method="post"  style="background-color: white;">
+    <div class="table">
+
+      <input  class="form-control" name="id"  id="id" aria-describedby="" placeholder="" readonly hidden>
+
+
+        <input  class="form-control" name="date_transaction"  id="date_transaction" aria-describedby="item_number" placeholder="YYYY-MM-DD" style="
+          width: 208px;
+    height: 50px;
+    font-size: 30px;
+    background: white;
+    " readonly hidden>
+
+        <input type="text" class="form-control" id="product_reference"  name="product_reference" placeholder="SRY12" style="
+        width: 208px;
+    height: 50px;
+    font-size: 30px;
+    background: white;
+    " readonly hidden>
+
+          <input type="text" class="form-control" id="product_name"  name="product_name" placeholder="Morning Enlightenment" style="
+                  width: 854px;
+    height: 93px;
+    font-size: 38px;
+    background: border-box;
+    margin-left: 8px;
+    border-color: #5279d9;
+    color: #8a8b8e;
+      " readonly>
+
+          <input type="text" class="form-control" id="uom"  name="uom" placeholder="pcs" style="
+          width: 208px;
+    height: 50px;
+    font-size: 30px;
+    background: white;
+      " readonly hidden>
+  
+          <input type="text" class="form-control" id="qty"  name="qty" style="
+                 width: 854px;
+    height: 93px;
+    font-size: 38px;
+    background: border-box;
+    margin-left: 8px;
+    border-color: #5279d9;
+    color: #8a8b8e;
+      " readonly>
+     
+          <input type="text" class="form-control" id="selling_price"  name="selling_price" style="
+        width: 208px;
+    height: 50px;
+    font-size: 30px;
+    background: white;
+      " readonly hidden>
+      
+          <input type="text" class="form-control" id="total"  name="total" style="
+            width: 208px;
+    height: 50px;
+    font-size: 30px;
+    background: white;
+      " readonly hidden>
+        </div>
+    </form>
+    <div class="calculator" id="calculatorButtons">
+    </div>
+    <button type="button" style="width: 302px;margin-left: 9px;" class="btn btn-primary btn-lg" id="tambah">Posting !!!!</button>
+    <button type="button" style="width: 302px;margin-left: 9px;" class="btn btn-danger btn-lg" onclick="redirectToPrint()">Print !!!!</button>
+    <button type="button" style="width: 302px;margin-left: 9px;" class="btn btn-info btn-lg" id="reset">New Transaction !!!!</button>
+
+  </div>
+  <div class="col-lg-5">
+  <div id="receiptContainer" style="  ">
+    <!-- Data Struk akan dimasukkan di sini melalui JavaScript -->
+  </div>
+</div>
+</div>
+
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+            <!-- End of Main Content -->
+
+              <!-- Footer -->
+              <footer class="sticky-footer bg-white">
+               
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+
+  
+
+      
+    <script>
+      // Ambil elemen sidebarContainer
+      const sidebarContainer = document.getElementById('sidebarContainer');
+    // Buat objek XMLHttpRequest
+    const xhr = new XMLHttpRequest();
+    // Buka koneksi ke file sidebar.html
+    xhr.open('GET', '../sidebar/sidebar.html', true);
+    // Tambahkan event listener untuk menangani perubahan status
+    xhr.onreadystatechange = function () {
+        // Periksa apakah permintaan selesai (status 4) dan berhasil (status 200)
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            // Isi elemen sidebarContainer dengan isi dari sidebar.html
+            sidebarContainer.innerHTML = xhr.responseText;
+        }
+    };
+    // Kirim permintaan
+    xhr.send();
+
+    $(document).ready( function ()
+{
+    $("#prlinee").show();
+
+    function generateUUID() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    var r = Math.random() * 16 | 0,
+        v = c === 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+}
+
+$('[id^="id"]').val(generateUUID());
+});
+function redirectToPrint() {
+    window.location.href = 'http://localhost:3000/print';
+  }
+
+</script>
+
+
+
+  <!-- DataTables and related scripts -->
+  <script  src="/vendor/datatables/jquery.dataTables.min.js"></script>
+  <script  src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+  <script  src="/vendor/dataTables.select.min.js"></script>
+  <script  src="/vendor/dataTables.checkboxes.js"></script>
+  <script  src="/vendor/dataTables.checkboxes.min.js"></script>
+  <script  src="/vendor/tables.js"></script>
+  <script  src="/vendor/submit.js"></script>
+  <script  src="/vendor/jspdf.umd.min.js"></script>
+  <script  src="/vendor/pdf-lib.js"></script>
+  <script  src="/vendor/pdf-lib.min.js"></script>
+
+
+</body>
+
+
+</html>

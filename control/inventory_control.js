@@ -13,15 +13,15 @@ exports.getAllInv = async (req, res) => {
 };
 
 exports.createInventory = async (req, res) => {
-  const { item_number, product_reference, product_name, uom, price } = req.body;
+  const { item_number, product_reference, product_name, uom, purchase_price,selling_price } = req.body;
 
-  if (!item_number || !product_reference || !product_name || !uom || !price) {
+  if (!item_number || !product_reference || !product_name || !uom || !purchase_price || !selling_price) {
     return res.status(400).json({ error: 'All fields are required.' });
   }
 
   try {
     const invid = uuidv4();
-    const newInventory = await Inventory.create({ id: invid, item_number, product_reference, product_name, uom, price });
+    const newInventory = await Inventory.create({ id: invid, item_number, product_reference, product_name, uom, purchase_price,selling_price });
     return res.json(newInventory);
   } catch (err) {
     console.error(err);
@@ -33,11 +33,11 @@ exports.createInventory = async (req, res) => {
 exports.updateInventory = async (req, res) => 
 {
   const id = req.params.id;
-  const { item_number, product_reference, product_name,uom,price } = req.body;
+  const { item_number, product_reference, product_name,uom,purchase_price,selling_price } = req.body;
 
   try {
     const updatedInventory = await Inventory.update(
-      { item_number, product_reference, product_name,uom,price },
+      { item_number, product_reference, product_name,uom,purchase_price,selling_price },
       { where: { id: id } }
     );
 
@@ -73,7 +73,7 @@ exports.deleteInventory = async (req, res) =>
 };
 
 exports.deleteAllInventory = async (req, res) => {
-  const { item_number, product_reference, product_name,uom,price  } = req.body;
+  const { item_number, product_reference, product_name,uom,purchase_price,selling_price  } = req.body;
 
   try {
     // Menggunakan metode destroy dengan kondisi berdasarkan nilai dari req.body
@@ -83,7 +83,8 @@ exports.deleteAllInventory = async (req, res) => {
         product_reference: product_reference,
         product_name: product_name,
         uom: uom,
-        price: price,
+        purchase_price: purchase_price,
+        selling_price: selling_price,
       },
     });
 

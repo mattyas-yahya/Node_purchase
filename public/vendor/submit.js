@@ -134,5 +134,64 @@ cache: false,
 });
 });
 
+$("#tambah").click(function (event)
+{    
+// e.preventDefault(); // Mencegah aksi default formulir
+$.ajax({
+type: "POST",
+url: "http://localhost:3000/sales/Save",
+data: $("#form_sales").serialize(), // Menggunakan $("#form_purchase").serialize()
+cache: false,
+success: function(response) {
+    // Buat elemen alert Bootstrap
+    var alertElement = $('<div class="alert alert-success" role="alert">Data berhasil di tambah!</div>');
 
+    // Tambahkan elemen alert ke dalam body atau elemen lainnya sesuai kebutuhan
+    // Misalnya, tambahkan ke dalam elemen dengan id="alert-container"
+    $('#alert-container').html(alertElement);
+
+    // Setelah beberapa detik, hapus elemen alert
+    setTimeout(function() {
+        alertElement.alert('close');
+    }, 3000); // 3000 milidetik (3 detik) dalam contoh ini
+
+    // Jika Anda juga ingin memuat ulang halaman, gunakan:
+     location.reload();
+},
+error: function(error) {
+    // Handle error jika diperlukan
+    console.error("Error in AJAX request:", error);
+}
+});
+});
+$("#reset").click(function (event)
+{    
+// e.preventDefault(); // Mencegah aksi default formulir
+$.ajax({
+type: "POST",
+url: "http://localhost:3000/sales/Delete",
+data: $("#form_sales").serialize(), // Menggunakan $("#form_purchase").serialize()
+cache: false,
+success: function(response) {
+    // Buat elemen alert Bootstrap
+    var alertElement = $('<div class="alert alert-success" role="alert">Data berhasil di tambah!</div>');
+
+    // Tambahkan elemen alert ke dalam body atau elemen lainnya sesuai kebutuhan
+    // Misalnya, tambahkan ke dalam elemen dengan id="alert-container"
+    $('#alert-container').html(alertElement);
+
+    // Setelah beberapa detik, hapus elemen alert
+    setTimeout(function() {
+        alertElement.alert('close');
+    }, 3000); // 3000 milidetik (3 detik) dalam contoh ini
+
+    // Jika Anda juga ingin memuat ulang halaman, gunakan:
+     location.reload();
+},
+error: function(error) {
+    // Handle error jika diperlukan
+    console.error("Error in AJAX request:", error);
+}
+});
+});
 });
