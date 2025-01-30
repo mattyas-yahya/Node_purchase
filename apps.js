@@ -13,6 +13,7 @@ const InventoryRoutes = require('./routes/inventory_routes');
 const SalesRoutes = require('./routes/sales_routes');
 const LoginRoutes = require('./routes/login_routes');
 const PrintRoutes = require('./routes/print_routes');
+require('dotenv').config();
 
 
 // Middleware untuk meng-handle form data
