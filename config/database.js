@@ -1,8 +1,8 @@
 const Sequelize  = require('sequelize');
 
-const sequelize = new Sequelize('node_manufacture', 'root', 'root', {
+const sequelize = new Sequelize('neondb', 'neondb_owner', 'npg_L5OtbAVHZP7R', {
   host: 'https://node-purchase.vercel.app',
-  dialect: 'mysql',
+  dialect: 'postgresql',
 });
 
 module.exports = sequelize;
