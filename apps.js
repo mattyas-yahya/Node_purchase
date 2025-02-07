@@ -1,12 +1,14 @@
+require('dotenv').config(); // Panggil dotenv di awal
+
 const express = require('express');
 const app = express();
-// const port = 3000;
-const port =ep-frosty-recipe-a4t4af50-pooler.us-east-1.aws.neon.tech;
+const port = process.env.PORT || 3000; // Gunakan PORT dari .env atau default ke 3000
 const path = require('path');
 const cors = require('cors');
-app.use(cors());
 const bodyParser = require('body-parser');
 const sequelize = require('./config/database');
+
+// Import Routes
 const purchaseRoutes = require('./routes/purchase_routes');
 const purchaseLineRoutes = require('./routes/purchase_line_routes');
 const purchase_order_routes = require('./routes/purchase_order_routes');
@@ -14,22 +16,20 @@ const InventoryRoutes = require('./routes/inventory_routes');
 const SalesRoutes = require('./routes/sales_routes');
 const LoginRoutes = require('./routes/login_routes');
 const PrintRoutes = require('./routes/print_routes');
-require('dotenv').config();
-
-
-// Middleware untuk meng-handle form data
-app.use(function (req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With');
-  res.setHeader('Access-Control-Allow-Credentials', true);
-  next();
-});
 
 // Middleware
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+// CORS Headers
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  next();
+});
 
 // Routes
 app.use('/purchase', purchaseRoutes);
@@ -40,10 +40,10 @@ app.use('/sales', SalesRoutes);
 app.use('/login', LoginRoutes);
 app.use('/print', PrintRoutes);
 
-
-
+// Static Files
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Routes for HTML files
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
@@ -52,13 +52,13 @@ app.get('/signup_success', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'signup_success.html'));
 });
 
-sequelize.sync().then(() => 
-{
-  // Jalankan Server
-  app.listen(port, () => {
-    console.log(`Server is running at http://localhost:${port}`);
+// Sync Database & Start Server
+sequelize.sync()
+  .then(() => {
+    app.listen(port, () => {
+      console.log(`✅ Server running at http://localhost:${port}`);
+    });
+  })
+  .catch(err => {
+    console.error('❌ Database sync failed:', err);
   });
-});
-
-
-
