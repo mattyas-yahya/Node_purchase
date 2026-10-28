@@ -56,7 +56,7 @@ app.get('/signup_success', (req, res) => {
 sequelize.sync()
   .then(() => {
     app.listen(port, () => {
-      console.log(`✅ Server running at http://localhost:${port}`);
+      console.log(`✅ Server running at http://node-purchase.vercel.app:${port}`);
     });
   })
   .catch(err => {
